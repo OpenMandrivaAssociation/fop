@@ -1,28 +1,29 @@
 %define gcj_support 1
 
-Summary:        XSL-driven print formatter
 Name:           fop
 Version:        0.94
 Release:        %mkrel 0.2.1
+Epoch:          0
+Summary:        XSL-driven print formatter
 License:        Apache License
 Group:          Development/Java
-Source0:        fop-0.94-src.tar.gz
+Source0:        fop-%{version}-src.tar.gz
 Source1:        %{name}.script
 Patch0:         %{name}-build.patch
 Patch1:         %{name}-manifest.patch
 Patch2:         %{name}-main.patch
 URL:            http://xmlgraphics.apache.org/fop
 
-Requires:       xmlgraphics-commons >= 1.2
-Requires:       avalon-framework >= 4.1.4
-Requires:       batik >= 1.7
-Requires:       xalan-j2 >= 2.7.0
-Requires:       xml-commons-apis >= 1.3.04
+Requires:       xmlgraphics-commons >= 0:1.2
+Requires:       avalon-framework >= 0:4.1.4
+Requires:       batik >= 0:1.7
+Requires:       xalan-j2 >= 0:2.7.0
+Requires:       xml-commons-apis >= 0:1.3.04
 Requires:       jakarta-commons-httpclient
-Requires:       jakarta-commons-io >= 1.2
-Requires:       jakarta-commons-logging >= 1.0.4
+Requires:       jakarta-commons-io >= 0:1.2
+Requires:       jakarta-commons-logging >= 0:1.0.4
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  ant
 BuildRequires:  ant-trax
 BuildRequires:  java-rpmbuild
@@ -49,7 +50,6 @@ Group:          Development/Java
 %description    javadoc
 Javadoc for %{name}.
 
-
 %prep
 %setup -q
 %patch0 -p1
@@ -57,7 +57,6 @@ Javadoc for %{name}.
 %patch2 -p0
 
 %build
-#export ANT_HOME=%{_datadir}/ant
 export JAVA_HOME=%{_jvmdir}/java-icedtea
 export CLASSPATH=
 export OPT_JAR_LIST="`%{__cat} %{_sysconfdir}/ant.d/trax`"
@@ -68,25 +67,25 @@ rm -rf $RPM_BUILD_ROOT
 
 # jars
 mkdir -p $RPM_BUILD_ROOT%{_javadir}
-cp -p build/%{name}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
-cp -p build/%{name}-transcoder.jar $RPM_BUILD_ROOT%{_javadir}/pdf-transcoder.jar
+cp -a build/%{name}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
+cp -a build/%{name}-transcoder.jar $RPM_BUILD_ROOT%{_javadir}/pdf-transcoder.jar
 pushd $RPM_BUILD_ROOT%{_javadir}
 for jar in *-%{version}*
-do ln -sf ${jar} `echo $jar| sed "s|-%{version}||g"`
+do ln -s ${jar} `echo $jar| sed "s|-%{version}||g"`
 done
 popd
 
 # script
 mkdir -p $RPM_BUILD_ROOT%{_bindir}
-cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/fop
+cp -a %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/fop
 
 # data
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}
-cp -pr conf $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a conf $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 # javadoc
 mkdir -p $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-cp -pr build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+cp -a build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name}
 
 %if %{gcj_support}
