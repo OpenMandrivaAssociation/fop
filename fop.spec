@@ -1,9 +1,9 @@
-%define gcj_support 1
+%define gcj_support 0
 
 Summary:	XSL-driven print formatter
 Name:		fop
-Version:	0.95
-Release:	%mkrel 0.0.3
+Version:	1.0
+Release:	%mkrel 0.0.1
 Epoch:		0
 License:	Apache License
 Group:		Development/Java
@@ -47,7 +47,7 @@ Javadoc for %{name}.
 
 %prep
 %setup -q
-%patch1 -p1
+#%patch1 -p1
 %patch2 -p0
 
 %build
