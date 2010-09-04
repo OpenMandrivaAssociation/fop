@@ -3,7 +3,7 @@
 Summary:	XSL-driven print formatter
 Name:		fop
 Version:	1.0
-Release:	%mkrel 0.0.1
+Release:	%mkrel 0.0.2
 Epoch:		0
 License:	Apache License
 Group:		Development/Java
