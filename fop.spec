@@ -1,7 +1,7 @@
 Summary:	XSL-driven print formatter
 Name:		fop
 Version:	1.0
-Release:	16
+Release:	18
 License:	ASL 2.0
 Group:		Text tools
 URL:		http://xmlgraphics.apache.org/fop
