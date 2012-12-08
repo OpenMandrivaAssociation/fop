@@ -1,6 +1,2 @@
 sources:
-  "batik-pdf-MANIFEST.MF:"	5415d0dff1a44768c4cd6892f2b4f3c03d7c275a
-  "event-model.tgz:"	56ea5271ac384413d8aa9bb2fc41f175f346ad62
-  "fop-1.0.pom:"	918a85062b66f2b2f17b8be1bb98c7a490f0d19b
-  "fop-1.0-src.tar.gz:"	1fd047ffa8f54013b564f97235d8e1d2680aa7b1
-  "fop.script:"	bba6494f5120c92a44684c8ed1610d309181e5b6
+  "fop-1.0-src.tar.gz": 1fd047ffa8f54013b564f97235d8e1d2680aa7b1
