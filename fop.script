@@ -25,7 +25,8 @@ fi
 MAIN_CLASS=org.apache.fop.cli.Main
 # Set parameters
 set_jvm
-set_classpath commons-io batik-all avalon-framework xmlgraphics-commons \
+set_classpath commons-io batik-all avalon-framework-api \
+  avalon-framework-impl xmlgraphics-commons xml-commons-apis-ext \
   commons-logging fop
 set_flags $BASE_FLAGS
 set_options $BASE_OPTIONS
