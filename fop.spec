@@ -2,7 +2,7 @@
 Name:		fop
 Summary:	XSL-driven print formatter
 Version:	1.1
-Release:	5.1%{?dist}
+Release:	5.2
 # ASL 1.1:
 # several files in src/java/org/apache/fop/render/awt/viewer/resources/
 # rest is ASL 2.0
@@ -115,6 +115,7 @@ install -p -m 644 %{SOURCE3} %{buildroot}%{_mavenpomdir}/JPP-%{name}.pom
 %{_mavendepmapfragdir}/%{name}
 %{_mavenpomdir}/JPP-%{name}.pom
 %{_bindir}/fop
+%{_datadir}/maven-metadata/fop.xml
 
 %files javadoc
 %doc %{_javadocdir}/%{name}
