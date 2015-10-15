@@ -2,7 +2,7 @@
 Name:		fop
 Summary:	XSL-driven print formatter
 Version:	1.1
-Release:	8.3
+Release:	8.4
 Group:		Development/Java
 # ASL 1.1:
 # several files in src/java/org/apache/fop/render/awt/viewer/resources/
@@ -17,6 +17,7 @@ Source3:	http://mirrors.ibiblio.org/pub/mirrors/maven2/org/apache/xmlgraphics/%{
 Source4:	http://www.apache.org/licenses/LICENSE-1.1.txt
 Patch0:		%{name}-main.patch
 Patch1:		%{name}-Use-sRGB.icc-color-profile-from-icc-profiles-openicc.patch
+Patch2:	        0004-Port-to-QDox-2.0.patch
 
 BuildArch:	noarch
 
@@ -66,6 +67,7 @@ Javadoc for %{name}.
 %setup -q
 %patch0 -p0
 %patch1 -p1
+%patch2 -p1
 
 cp %{SOURCE4} LICENSE-1.1
 
