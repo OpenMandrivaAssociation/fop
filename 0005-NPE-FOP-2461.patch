@@ -1,0 +1,36 @@
+From 933f4f76b3af4bd8dc109dc375db84c44ea167f9 Mon Sep 17 00:00:00 2001
+From: Michael Simacek <msimacek@redhat.com>
+Date: Fri, 7 Aug 2015 13:03:32 +0200
+Subject: [PATCH 5/6] NPE-FOP-2461
+
+---
+ src/java/org/apache/fop/layoutmgr/list/ListItemLayoutManager.java | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/src/java/org/apache/fop/layoutmgr/list/ListItemLayoutManager.java b/src/java/org/apache/fop/layoutmgr/list/ListItemLayoutManager.java
+index 9ba1bce..b42c635 100644
+--- a/src/java/org/apache/fop/layoutmgr/list/ListItemLayoutManager.java
++++ b/src/java/org/apache/fop/layoutmgr/list/ListItemLayoutManager.java
+@@ -393,7 +393,8 @@ public class ListItemLayoutManager extends SpacedBorderedPaddedBlockLayoutManage
+             int breakClass = EN_AUTO;
+             KnuthElement endEl = elementLists[0].size() > 0 ? (KnuthElement) elementLists[0].get(end[0])
+                     : null;
+-            Position originalLabelPosition = endEl != null ? endEl.getPosition().getPosition() : null;
++            Position originalLabelPosition =
++                    (endEl != null && endEl.getPosition() != null) ? endEl.getPosition().getPosition() : null;
+             if (endEl instanceof KnuthPenalty) {
+                 additionalPenaltyHeight = endEl.getWidth();
+                 stepPenalty = endEl.getPenalty() == -KnuthElement.INFINITE ? -KnuthElement.INFINITE : Math
+@@ -402,7 +403,8 @@ public class ListItemLayoutManager extends SpacedBorderedPaddedBlockLayoutManage
+                         ((KnuthPenalty) endEl).getBreakClass());
+             }
+             endEl = elementLists[1].size() > 0 ? (KnuthElement) elementLists[1].get(end[1]) : null;
+-            Position originalBodyPosition = endEl != null ? endEl.getPosition().getPosition() : null;
++            Position originalBodyPosition =
++                    (endEl != null && endEl.getPosition() != null) ? endEl.getPosition().getPosition() : null;
+             if (endEl instanceof KnuthPenalty) {
+                 additionalPenaltyHeight = Math.max(
+                         additionalPenaltyHeight, endEl.getWidth());
+-- 
+2.9.3
+

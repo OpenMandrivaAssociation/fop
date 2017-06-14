@@ -1,14 +1,14 @@
-From 3edb7de2cdd7dab48947882ae3340b0c3a0a9f87 Mon Sep 17 00:00:00 2001
+From e424bad757e50ffa6f819e14e9347c69a7337adc Mon Sep 17 00:00:00 2001
 From: Michael Simacek <msimacek@redhat.com>
 Date: Tue, 17 Mar 2015 10:59:41 +0100
-Subject: [PATCH 4/5] Port to QDox 2.0
+Subject: [PATCH 4/6] Port to QDox 2.0
 
 ---
- .../apache/fop/tools/EventProducerCollector.java   | 59 ++++++++--------------
- 1 file changed, 22 insertions(+), 37 deletions(-)
+ .../apache/fop/tools/EventProducerCollector.java   | 61 ++++++++--------------
+ 1 file changed, 23 insertions(+), 38 deletions(-)
 
 diff --git a/src/codegen/java/org/apache/fop/tools/EventProducerCollector.java b/src/codegen/java/org/apache/fop/tools/EventProducerCollector.java
-index c6674ba..e39bf50 100644
+index c6674ba..620ecc4 100644
 --- a/src/codegen/java/org/apache/fop/tools/EventProducerCollector.java
 +++ b/src/codegen/java/org/apache/fop/tools/EventProducerCollector.java
 @@ -21,6 +21,7 @@ package org.apache.fop.tools;
@@ -81,7 +81,7 @@ index c6674ba..e39bf50 100644
 -        JavaClass[] classes = clazz.getImplementedInterfaces();
 -        for (int i = 0, c = classes.length; i < c; i++) {
 -            JavaClass cl = classes[i];
-+        List<JavaClass> classes = clazz.getImplementedInterfaces();
++        List<JavaClass> classes = clazz.getInterfaces();
 +        for (JavaClass cl: classes) {
              if (cl.getFullyQualifiedName().equals(intf)) {
                  return true;
@@ -98,9 +98,12 @@ index c6674ba..e39bf50 100644
              EventMethodModel methodMeta = createMethodModel(method);
              prodMeta.addMethod(methodMeta);
          }
-@@ -138,18 +123,18 @@ class EventProducerCollector {
+@@ -136,20 +121,20 @@ class EventProducerCollector {
+ 
+     private EventMethodModel createMethodModel(JavaMethod method)
              throws EventConventionException, ClassNotFoundException {
-         JavaClass clazz = method.getParentClass();
+-        JavaClass clazz = method.getParentClass();
++        JavaClass clazz = method.getDeclaringClass();
          //Check EventProducer conventions
 -        if (!method.getReturnType().isVoid()) {
 +        if (!method.getReturns().isVoid()) {
@@ -155,5 +158,5 @@ index c6674ba..e39bf50 100644
              methodMeta.setSeverity(EventSeverity.FATAL); //In case it's not set in the comments
          }
 -- 
-2.1.0
+2.9.3
 

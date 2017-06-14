@@ -1,0 +1,24 @@
+From 2484113b0226421a357a82b9cc021725b73e8251 Mon Sep 17 00:00:00 2001
+From: Michael Simacek <msimacek@redhat.com>
+Date: Wed, 1 Feb 2017 13:10:03 +0100
+Subject: [PATCH 6/6] Allow javascript in javadoc
+
+---
+ build.xml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/build.xml b/build.xml
+index 4f212f0..d2734e1 100644
+--- a/build.xml
++++ b/build.xml
+@@ -965,6 +965,7 @@ NOTE:
+       overview="${src.dir}/java/org/apache/fop/overview.html"
+       maxmemory="256M">
+       <arg value="-Xdoclint:none"/>
++      <arg value="--allow-script-in-comments"/>
+       <header><![CDATA[${name} ${version}]]></header>
+       <footer><![CDATA[${name} ${version}]]></footer>
+       <classpath>
+-- 
+2.9.3
+
