@@ -14,7 +14,7 @@ URL:            http://xmlgraphics.apache.org/fop
 Source0:        %{name}-%{version}-clean.tar.gz
 Source1:        %{name}.script
 Source2:        batik-pdf-MANIFEST.MF
-Source3:        http://mirrors.ibiblio.org/pub/mirrors/maven2/org/apache/xmlgraphics/%{name}/%{version}/%{name}-%{version}.pom
+Source3:        http://maven.ibiblio.org/maven2/org/apache/xmlgraphics/%{name}/%{version}/%{name}-%{version}.pom
 Source4:        http://www.apache.org/licenses/LICENSE-1.1.txt
 Patch0:         0001-Main.patch
 Patch1:         0002-Use-sRGB.icc-color-profile-from-colord-package.patch
