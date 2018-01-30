@@ -1,7 +1,7 @@
-From 275f22df6791135dde308f76cf4b2f7ec30f1840 Mon Sep 17 00:00:00 2001
-From: Michal Srb <msrb@redhat.com>
-Date: Fri, 12 Apr 2013 15:43:11 +0200
-Subject: [PATCH] Use sRGB.icc color profile from icc-profiles-openicc package
+From 4711c34226d25055e5ba7975f7d8c0abdd2e74ed Mon Sep 17 00:00:00 2001
+From: Michael Simacek <msimacek@redhat.com>
+Date: Tue, 14 Jul 2015 16:56:49 +0200
+Subject: [PATCH 2/6] Use sRGB.icc color profile from colord package
 
 It's a replacement for non-free color profile shipped with fop
 ---
@@ -9,28 +9,27 @@ It's a replacement for non-free color profile shipped with fop
  1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/src/java/org/apache/fop/pdf/PDFICCBasedColorSpace.java b/src/java/org/apache/fop/pdf/PDFICCBasedColorSpace.java
-index 60fea88..e041344 100644
+index 89a2c06..f0867a9 100644
 --- a/src/java/org/apache/fop/pdf/PDFICCBasedColorSpace.java
 +++ b/src/java/org/apache/fop/pdf/PDFICCBasedColorSpace.java
-@@ -21,8 +21,10 @@ package org.apache.fop.pdf;
- 
+@@ -22,7 +22,9 @@ package org.apache.fop.pdf;
  import java.awt.color.ColorSpace;
  import java.awt.color.ICC_Profile;
-+import java.io.FileNotFoundException;
  import java.io.IOException;
++import java.io.FileNotFoundException;
  import java.io.InputStream;
 +import java.io.FileInputStream;
+ import java.util.Set;
  
  import org.apache.commons.io.IOUtils;
- 
-@@ -137,7 +139,12 @@ public class PDFICCBasedColorSpace extends PDFObject implements PDFColorSpace {
+@@ -138,7 +140,12 @@ public class PDFICCBasedColorSpace extends PDFObject implements PDFColorSpace {
      public static PDFICCStream setupsRGBColorProfile(PDFDocument pdfDoc) {
          ICC_Profile profile;
          PDFICCStream sRGBProfile = pdfDoc.getFactory().makePDFICCStream();
 -        InputStream in = PDFDocument.class.getResourceAsStream("sRGB Color Space Profile.icm");
 +        InputStream in;
 +        try {
-+            in = new FileInputStream("/usr/share/color/icc/sRGB.icc");
++            in = new FileInputStream("/usr/share/color/icc/colord/sRGB.icc");
 +        } catch (FileNotFoundException e) {
 +            in = null;
 +        }
@@ -38,5 +37,5 @@ index 60fea88..e041344 100644
              try {
                  profile = ColorProfileUtil.getICC_Profile(in);
 -- 
-1.8.1.4
+2.9.3
 
