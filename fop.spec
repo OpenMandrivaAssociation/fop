@@ -3,7 +3,7 @@
 Name:           fop
 Summary:        XSL-driven print formatter
 Version:        2.0
-Release:        5.2
+Release:        5.3
 # ASL 1.1:
 # several files in src/java/org/apache/fop/render/awt/viewer/resources/
 # rest is ASL 2.0
