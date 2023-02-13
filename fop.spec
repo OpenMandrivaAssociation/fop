@@ -2,8 +2,8 @@
 
 Name:           fop
 Summary:        XSL-driven print formatter
-Version:        2.0
-Release:        5.3
+Version:        2.8
+Release:        1
 # ASL 1.1:
 # several files in src/java/org/apache/fop/render/awt/viewer/resources/
 # rest is ASL 2.0
@@ -11,7 +11,7 @@ License:        ASL 2.0 and ASL 1.1
 Group:          Development/Java
 URL:            http://xmlgraphics.apache.org/fop
 # ./clean-tarball %%{version}
-Source0:        %{name}-%{version}-clean.tar.gz
+Source0:        https://downloads.apache.org/xmlgraphics/fop/source/fop-%{version}-src.tar.gz
 Source1:        %{name}.script
 Source2:        batik-pdf-MANIFEST.MF
 Source3:        http://maven.ibiblio.org/maven2/org/apache/xmlgraphics/%{name}/%{version}/%{name}-%{version}.pom
@@ -66,13 +66,8 @@ Summary:        Javadoc for %{name}
 Javadoc for %{name}.
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
+%autosetup -n %{name}-%{version} -p1
+
 
 cp %{SOURCE4} LICENSE-1.1
 
