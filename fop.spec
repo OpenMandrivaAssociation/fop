@@ -9,7 +9,7 @@ Release:        5.3
 # rest is ASL 2.0
 License:        ASL 2.0 and ASL 1.1
 Group:          Development/Java
-URL:            http://xmlgraphics.apache.org/fop
+URL:            https://xmlgraphics.apache.org/fop
 # ./clean-tarball %%{version}
 Source0:        %{name}-%{version}-clean.tar.gz
 Source1:        %{name}.script
